@@ -63,7 +63,8 @@ public class MD5Utils {
     return resultString;
   }
 
-
-
+  public static void main(String[] args) {
+    System.out.println(getMD5Code("123456"));
+  }
 
 }
