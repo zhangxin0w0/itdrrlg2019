@@ -25,6 +25,13 @@ public class Const {
      * */
     public static  final int ERROR=100;
 
+    public interface Cart{
+        String LIMITQUANTITYSUCCESS="LIMIT_NUM_SUCCESS";
+        String LIMITQUANTITYFAILED="LIMIT_NUM_FAILED";
+        Integer CHECK=1;
+        Integer UNCHECK=0;
+    }
+
     public enum UsersEnum {
         NEED_LOGIN(2, "需要登录"),
         NO_LOGIN(101,"用户未登录");
