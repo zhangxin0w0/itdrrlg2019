@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.math.BigDecimal;
+
 /**
  * ClassName: DemoTest
  * 日期: 2019/9/6 16:44
@@ -16,9 +18,8 @@ public class DemoTest {
 
     @Test
     public void test1(){
-        ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
-        DriverManagerDataSource dataSource = (DriverManagerDataSource) ac.getBean("dataSource");
-        String url = dataSource.getUrl();
-        System.out.println(url);
+       double a;
+       int b = 1;
+       a = b;
     }
 }
