@@ -18,8 +18,8 @@ public class DemoTest {
 
     @Test
     public void test1(){
-       double a;
-       int b = 1;
-       a = b;
+       BigDecimal a = new BigDecimal("1");
+       BigDecimal b = new BigDecimal("2");
+        System.out.println(a.equals(b));
     }
 }

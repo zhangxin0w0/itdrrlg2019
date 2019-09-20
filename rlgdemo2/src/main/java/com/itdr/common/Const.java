@@ -64,6 +64,42 @@ public class Const {
     }
 
 
+    public  enum PaymentPlatformEnum{
+
+        ALIPAY(1,"支付宝"),
+        ALIPAY_FALSE(301,"支付宝预下单失败"),
+        VERIFY_SIGNATURE_FALSE(302,"支付宝验签失败"),
+        VERIFY_ORDER_FALSE(303,"不是本商品的订单"),
+        REPEAT_USEALIPAY(304,"支付宝重复调用"),
+        SAVEPAYMSG_FALSE(305,"支付信息保存失败")
+        ;
+        private  int  code;
+        private String desc;
+        private PaymentPlatformEnum(int code,String desc){
+            this.code=code;
+            this.desc=desc;
+        }
+
+
+
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
+
 
 
 
