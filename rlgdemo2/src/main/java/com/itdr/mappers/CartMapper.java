@@ -32,4 +32,11 @@ public interface CartMapper {
     int selectOrUnSelect(@Param("id") Integer id, @Param("check") Integer check,@Param("productId") Integer productId);
 
     int updateById(Cart cartForQuantity);
+
+    List<Cart> selectByUidAll(Integer uid);
+
+
+    int deleteAllByIdAndUid(@Param("li") List<Cart> li, @Param("uid") Integer uid);
+
+
 }

@@ -81,6 +81,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.itdr.pojo.Cart" >
     update neuedu_cart
     <set >
@@ -126,6 +127,14 @@
     where user_id=#{uid} and checked = #{check}
   </select>
 
+  <!--根据用户ID获取购物车中选中的数据-->
+  <select id="selectByUidAll" parameterType="integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from neuedu_cart
+    where user_id=#{uid} and checked = 1
+  </select>
+
   <!---->
   <update id="selectOrUnSelect" parameterType="map">
     update neuedu_cart
@@ -159,4 +168,19 @@
        </if>
      </where>
   </delete>
+
+  <!---->
+  <delete id="deleteAllByIdAndUid">
+    delete from neuedu_cart
+    <where>
+      user_id = #{uid}
+      <if test="li != null">
+        and id in
+        <foreach collection="li" item="cart" open="(" separator="," close=")">
+          #{cart.id}
+        </foreach>
+      </if>
+    </where>
+  </delete>
+
 </mapper>
