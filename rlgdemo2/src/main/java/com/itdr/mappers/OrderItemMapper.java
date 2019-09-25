@@ -22,4 +22,7 @@ public interface OrderItemMapper {
     List<OrderItem> selectByOrderNo(Long oid);
 
     int insertAll(@Param("orderItems") List<OrderItem> orderItems);
+
+    //根据订单号和用户ID查对应商品详情
+    List<OrderItem> selectByOrderNoAndUid(@Param("orderNo") Long orderNo, @Param("uid") Integer uid);
 }
