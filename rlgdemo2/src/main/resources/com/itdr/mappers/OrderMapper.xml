@@ -31,18 +31,17 @@
     delete from neuedu_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+    <!--插入一条数据-->
     <insert id="insert" parameterType="com.itdr.pojo.Order">
     insert into neuedu_order (id, user_id, order_no, 
       shipping_id, payment, payment_type, 
-      postage, status, payment_time, 
-      send_time, end_time, close_time, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
+      postage, status, create_time, update_time)
+    values (null, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT},
       #{shippingId,jdbcType=INTEGER}, #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, 
-      #{postage,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, 
-      #{sendTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      #{postage,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},now(), now())
   </insert>
+
     <insert id="insertSelective" parameterType="com.itdr.pojo.Order">
         insert into neuedu_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -187,6 +186,14 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateToStatus" parameterType="com.itdr.pojo.Order">
+        update neuedu_order
+    set
+      status = #{status,jdbcType=INTEGER},
+      close_time = now(),
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+    </update>
 
     <!---->
     <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -203,4 +210,12 @@
     from neuedu_order
     where order_no = #{orderno} and user_id = #{uid}
   </select>
+
+    <!---->
+    <select id="selectByUid" parameterType="integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from neuedu_order
+        where user_id = #{uid} ORDER BY create_time desc
+    </select>
 </mapper>
